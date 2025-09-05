@@ -11,7 +11,7 @@ const Browse = () => {
           BROWSE BY DRESS STYLE
         </h1>
 
-        {/* First Row */}
+      
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 pt-10 pb-10 flex-wrap">
           <img
             className="w-100 max-w-[450px] sm:max-w-[200px] rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105"
@@ -25,7 +25,7 @@ const Browse = () => {
           />
         </div>
 
-        {/* Second Row */}
+
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 pb-4 flex-wrap">
           <img
             className="w-100 max-w-[450px] sm:max-w-[400px] rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105"

@@ -43,7 +43,7 @@ const Customer: React.FC = () => {
 
   return (
     <div className="w-full px-4 sm:px-6 py-12 bg-white text-black">
-      {/* Header with Arrows */}
+   
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 ml-35">
         <h2 className="text-2xl sm:text-4xl font-bold text-center sm:text-left mr-28">
           OUR HAPPY CUSTOMERS
@@ -64,7 +64,7 @@ const Customer: React.FC = () => {
         </div>
       </div>
 
-      {/* Visible Reviews */}
+  
       <div className="flex flex-col sm:flex-row gap-6 justify-center w-full max-w-7xl mx-auto">
         {visibleReviews.map((review, index) => (
           <div

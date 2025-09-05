@@ -1,7 +1,5 @@
-import React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
-// Importing your actual images
 import polo from "../../assets/polo.png";
 import gradiant from "../../assets/gradiant.png";
 import polowithtipping from "../../assets/polowithtipping.png";
@@ -46,7 +44,7 @@ const relatedProducts = [
   },
 ];
 
-// Function to dynamically render star ratings
+
 const renderStars = (rating: number) => {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
@@ -64,19 +62,16 @@ const renderStars = (rating: number) => {
 const RelatedProducts = () => {
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
-      {/* Section Title */}
-      <h2 className="text-2xl lg:text-3xl font-extrabold text-center mb-10 tracking-wide">
+   <h2 className="text-2xl lg:text-3xl font-extrabold text-center mb-10 tracking-wide">
         YOU MIGHT ALSO LIKE
       </h2>
 
-      {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {relatedProducts.map((product) => (
           <div
             key={product.id}
             className="flex flex-col items-center text-center"
           >
-            {/* Product Image */}
             <div className="bg-gray-50 rounded-2xl p-4 mb-4 w-full">
               <img
                 src={product.image}
@@ -85,16 +80,12 @@ const RelatedProducts = () => {
               />
             </div>
 
-            {/* Product Name */}
+    
             <h3 className="font-medium text-gray-800">{product.name}</h3>
-
-            {/* Rating */}
             <div className="flex items-center justify-center gap-1 mt-2">
               {renderStars(product.rating)}
               <span className="ml-1 text-sm text-gray-500">{product.rating}/5</span>
             </div>
-
-            {/* Pricing */}
             <div className="flex items-center justify-center gap-2 mt-2">
               <span className="text-lg font-bold">${product.price}</span>
               {product.oldPrice && (

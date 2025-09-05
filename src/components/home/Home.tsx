@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Fashion from "../../assets/fashion.jpg";
 import smallstar from "../../assets/smalstar.png";
 import bigstar from "../../assets/bigstar.png";
-import { Link } from "react-router-dom";
 
 
 interface CounterProps {
@@ -38,8 +37,6 @@ const Counter: React.FC<CounterProps> = ({ end, duration = 2000 }) => {
 const Home: React.FC = () => {
   return (
   <>
-
-      {/* Hero Section */}
       <main className="bg-[#F2F0F1] min-h-screen">
         <section className="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-20 py-16">
           <div className="max-w-xl text-center lg:text-left">

@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <div className="headerWrapper w-full bg-white">
-      {/* Top Strip */}
+
       <div className="bg-black h-9 text-white text-sm font-semibold flex items-center justify-center">
         <p className="mb-0 mt-0 text-center p-2">
           Sign up and get 20% off on your first order.{" "}
@@ -22,13 +22,10 @@ const Header = () => {
         </p>
       </div>
 
-      {/* Navbar */}
-      <nav className="h-20 flex items-center justify-between px-6 md:px-20 relative bg-white z-30">
-  <Link to="/">
+     <nav className="h-20 flex items-center justify-between px-6 md:px-20 relative bg-white z-30">
   <h1 className="text-3xl font-extrabold font-integral cursor-pointer transition-all duration-300 hover:text-blue-500 hover:scale-105">
     SHOP.CO
   </h1>
-</Link>
 
 
         {/* Center (Desktop Only) */}
@@ -133,7 +130,6 @@ const Header = () => {
         </div>
       </nav>
 
-      {/* Mobile Dropdown */}
       {isOpen && (
         <div className="md:hidden absolute top-20 left-0 w-full bg-white border-t border-gray-200 shadow-md z-20">
           <ul className="flex flex-col space-y-4 p-4 text-sm font-medium text-black">

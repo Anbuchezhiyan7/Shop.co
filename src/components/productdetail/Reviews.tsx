@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { FiFilter } from "react-icons/fi";
@@ -13,7 +13,7 @@ interface Review {
 
 const Reviews = () => {
   const [activeTab, setActiveTab] = useState("reviews");
-  const [sortOption, setSortOption] = useState("Latest");
+  const [sortOption,] = useState("Latest");
 
   const reviews: Review[] = [
     {
@@ -87,7 +87,6 @@ const Reviews = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      {/* =================== NAVIGATION TABS =================== */}
       <div className="flex justify-center space-x-10 border-b pb-4">
         <button
           className={`pb-2 ${
@@ -121,38 +120,31 @@ const Reviews = () => {
         </button>
       </div>
 
-      {/* =================== REVIEWS HEADER =================== */}
       <div className="mt-8 flex justify-between items-center">
         <h2 className="text-xl font-bold">All Reviews <span className="text-gray-500 font-normal">(451)</span></h2>
 
         <div className="flex items-center gap-4">
-          {/* Filter Button */}
           <button className="flex items-center gap-2 border rounded-full px-3 py-1 hover:bg-gray-50 transition">
             <FiFilter className="w-4 h-4" />
             <span className="text-sm">{sortOption}</span>
           </button>
-
-          {/* Write a Review Button */}
           <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">
             Write a Review
           </button>
         </div>
       </div>
 
-      {/* =================== REVIEWS LIST =================== */}
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         {reviews.map((review) => (
           <div
             key={review.id}
             className="border rounded-2xl p-5 shadow-sm hover:shadow-md transition"
           >
-            {/* Star Rating */}
             <div className="flex justify-between items-start">
               <div className="flex">{renderStars(review.rating)}</div>
               <HiOutlineDotsHorizontal className="text-gray-400 cursor-pointer" />
             </div>
 
-            {/* User Name */}
             <div className="flex items-center gap-2 mt-3">
               <h3 className="font-bold">{review.name}</h3>
               <span className="bg-green-500 text-white rounded-full text-[10px] px-1.5 py-0.5">
@@ -160,20 +152,18 @@ const Reviews = () => {
               </span>
             </div>
 
-            {/* Comment */}
+            
             <p className="mt-3 text-gray-600 text-sm leading-relaxed">
               "{review.comment}"
             </p>
 
-            {/* Date */}
+           
             <p className="mt-4 text-xs text-gray-400">
               Posted on {review.date}
             </p>
           </div>
         ))}
       </div>
-
-      {/* =================== LOAD MORE BUTTON =================== */}
       <div className="mt-8 flex justify-center">
         <button className="border rounded-full px-5 py-2 text-sm hover:bg-gray-50 transition">
           Load More Reviews

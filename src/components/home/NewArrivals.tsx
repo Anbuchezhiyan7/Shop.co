@@ -1,4 +1,4 @@
-import tshirt from "../../assets/Tshirt.png"; // replace with your images
+import tshirt from "../../assets/Tshirt.png";
 import jeans from "../../assets/Jeans.png";
 import checkedShirt from "../../assets/Checkedshirt.png";
 import stripedTshirt from "../../assets/Linetshirt.png";

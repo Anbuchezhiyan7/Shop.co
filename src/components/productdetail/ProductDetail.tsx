@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaMinus, FaPlus, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
-// Imported Local Images
 import frontTshirt from "../../assets/firstTshirt.png";
 import backTshirt from "../../assets/backside.png";
 import modelTshirt from "../../assets/exampleshowcase.png";
@@ -74,7 +73,6 @@ const ProductDetail = () => {
           <p className="text-gray-500 text-sm ml-2">4.5/5</p>
         </div>
 
-        {/* Price Section */}
         <div className="flex items-center gap-3 mt-4">
           <span className="text-2xl font-bold">$260</span>
           <span className="text-gray-400 line-through text-lg">$300</span>
@@ -83,13 +81,13 @@ const ProductDetail = () => {
           </span>
         </div>
 
-        {/* Description */}
+     
         <p className="mt-4 text-gray-600 leading-relaxed">
           This graphic t-shirt is perfect for any occasion. Crafted from a soft
           and breathable fabric, it offers superior comfort and style.
         </p>
 
-        {/* Color Selection */}
+
         <div className="mt-6">
           <h3 className="text-gray-700 font-medium">Select Colors</h3>
           <div className="flex gap-4 mt-2">
@@ -108,8 +106,6 @@ const ProductDetail = () => {
             ))}
           </div>
         </div>
-
-        {/* Size Selection */}
         <div className="mt-6">
           <h3 className="text-gray-700 font-medium">Choose Size</h3>
           <div className="flex gap-4 mt-2">
@@ -130,9 +126,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* Quantity and Add to Cart */}
         <div className="mt-8 flex items-center gap-4">
-          {/* Quantity Selector */}
           <div className="flex items-center border rounded-full px-4 py-2">
             <button
               className="p-2"
@@ -146,7 +140,6 @@ const ProductDetail = () => {
             </button>
           </div>
 
-          {/* Add to Cart Button */}
           <button className="flex-1 bg-black text-white rounded-full py-3 text-lg font-medium hover:bg-gray-800 transition">
             Add to Cart
           </button>

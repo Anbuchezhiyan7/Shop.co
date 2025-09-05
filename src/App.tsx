@@ -17,7 +17,6 @@ const App = () => {
       <Header />
 
       <Routes>
-        {/* Home Route */}
         <Route
           path="/"
           element={
@@ -30,8 +29,6 @@ const App = () => {
             </>
           }
         />
-
-        {/* Product Detail Route */}
         <Route
           path="/product/:id"
           element={

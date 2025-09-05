@@ -1,4 +1,4 @@
-import verticalshirt from "../../assets/Verticalshirt.png"; // replace with your images
+import verticalshirt from "../../assets/Verticalshirt.png";
 import graphictshirt from "../../assets/Graphictshirt.png";
 import shorts from "../../assets/Shorts.png";
 import skinnypant from "../../assets/Skinnypant.png";
@@ -10,7 +10,7 @@ interface Product {
   image: string;
   price: number;
   oldPrice?: number;
-  rating: number; // e.g., 4.5
+  rating: number;
 }
 
 const products: Product[] = [

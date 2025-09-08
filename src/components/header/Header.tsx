@@ -4,6 +4,7 @@ import { FiShoppingCart, FiSearch, FiMenu, FiX } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
+
 import tshirt from "../../assets/Tshirt.png";
 import jeans from "../../assets/Jeans.png";
 import checkedShirt from "../../assets/Checkedshirt.png";
@@ -17,10 +18,10 @@ const Header = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [showPopup, setShowPopup] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // Mobile menu toggle
-  const [shopOpen, setShopOpen] = useState(false); // Desktop dropdown
-  const [menSubOpen, setMenSubOpen] = useState(false); // Men submenu
-  const [mobileShopOpen, setMobileShopOpen] = useState(false); // Mobile Shop dropdown
+  const [isOpen, setIsOpen] = useState(false); 
+  const [shopOpen, setShopOpen] = useState(false); 
+  const [menSubOpen, setMenSubOpen] = useState(false); 
+  const [mobileShopOpen, setMobileShopOpen] = useState(false); 
 
   const products = [
     { name: "T-shirt with Tape Details", image: tshirt },
@@ -51,7 +52,7 @@ const Header = () => {
 
   return (
     <div className="headerWrapper w-full bg-white">
-      {/* Top Banner */}
+     
       <div className="bg-black h-9 text-white text-sm font-semibold flex items-center justify-center">
         <p className="mb-0 mt-0 text-center p-2">
           Sign up and get 20% off on your first order.{" "}
@@ -70,7 +71,7 @@ const Header = () => {
           </h1>
         </Link>
 
-        {/* Center Menu (Desktop Only) */}
+        
         <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
           <ul className="flex space-x-8 text-sm font-medium text-black">
             {/* Shop Dropdown */}
@@ -137,7 +138,8 @@ const Header = () => {
               Brands
             </li>
           </ul>
-          {/* Search Bar */}
+
+          {/* Desktop Search Bar */}
           <div className="relative">
             <input
               type="text"
@@ -146,34 +148,36 @@ const Header = () => {
               onChange={handleSearch}
               className="pl-10 pr-4 py-2 rounded-full bg-gray-100 text-sm w-64 focus:outline-none"
             />
-          {showPopup && results.length > 0 && (
-            <div className="absolute top-full">
-              {results.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex items-center cursor-pointer hover:bg-gray-100 p-2"
-                    onClick={() => {
-                      setQuery(item.name);
-                      setShowPopup(false);
-                    }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-10 h-10 object-cover rounded"
-                    />
-                    <span className="ml-2 text-sm">{item.name}</span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          {showPopup && results.length === 0 && (
-            <div className="absolute top-full left-0">No Product Found</div>
-          )}
+            <FiSearch className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+
+            {/* Desktop Popup */}
+            {showPopup && (
+              <div className="absolute top-full left-0 right-0 bg-white shadow-lg rounded-md mt-2 z-50">
+                {results.length > 0 ? (
+                  results.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center cursor-pointer hover:bg-gray-100 p-2"
+                      onClick={() => {
+                        setQuery(item.name);
+                        setShowPopup(false);
+                      }}
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-10 h-10 object-cover rounded"
+                      />
+                      <span className="ml-2 text-sm">{item.name}</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="p-2 text-gray-500 text-sm">No Product Found</div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-         </div>
 
         {/* Right Icons */}
         <div className="flex items-center space-x-4 text-xl">
@@ -265,15 +269,46 @@ const Header = () => {
             </li>
 
             {/* Mobile Search Bar */}
-            <li>
+            <li className="relative">
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Search for products..."
+                  value={query}
+                  onChange={handleSearch}
                   className="pl-10 pr-4 py-2 rounded-full bg-gray-100 text-sm w-full focus:outline-none"
                 />
                 <FiSearch className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
               </div>
+
+              {/* Mobile Popup */}
+              {showPopup && (
+                <div className="absolute top-full left-0 right-0 bg-white shadow-lg rounded-md mt-2 z-50">
+                  {results.length > 0 ? (
+                    results.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center cursor-pointer hover:bg-blue-300 p-2"
+                        onClick={() => {
+                          setQuery(item.name);
+                          setShowPopup(false);
+                        }}
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-10 h-10 object-cover rounded"
+                        />
+                        <span className="ml-2 text-sm">{item.name}</span>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-2 text-gray-500 text-sm">
+                      No Product Found
+                    </div>
+                  )}
+                </div>
+              )}
             </li>
           </ul>
         </div>

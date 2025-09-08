@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Fashion from "../../assets/fashion.jpg";
 import smallstar from "../../assets/smalstar.png";
 import bigstar from "../../assets/bigstar.png";
+import { Link } from "react-router-dom";
 
 
 interface CounterProps {
@@ -50,9 +51,12 @@ const Home: React.FC = () => {
               designed to bring out your individuality and cater to your sense of
               style.
             </p>
+
+            <Link to="/product/t-shirt">
             <button className="mt-8 px-8 py-3 rounded-full bg-black text-white font-semibold transition-all duration-300 hover:bg-blue-600 hover:scale-105">
               Shop Now
             </button>
+            </Link>
         
 
             <div className="mt-12 grid grid-cols-3 gap-6">

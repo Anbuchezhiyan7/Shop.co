@@ -10,7 +10,7 @@ interface Product {
   image: string;
   price: number;
   oldPrice?: number;
-  rating: number; // e.g., 4.5
+  rating: number; 
 }
 
 const products: Product[] = [

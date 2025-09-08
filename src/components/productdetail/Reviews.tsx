@@ -13,7 +13,7 @@ interface Review {
 
 const Reviews = () => {
   const [activeTab, setActiveTab] = useState("reviews");
-  const [sortOption,] = useState("Latest");
+  const [sortOption] = useState("Latest");
 
   const reviews: Review[] = [
     {
@@ -76,10 +76,7 @@ const Reviews = () => {
     }
     if (hasHalfStar) {
       stars.push(
-        <FaStarHalfAlt
-          key="half-star"
-          className="text-yellow-400"
-        />
+        <FaStarHalfAlt key="half-star" className="text-yellow-400" />
       );
     }
     return stars;
@@ -87,6 +84,7 @@ const Reviews = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      {/* Tabs Section */}
       <div className="flex justify-center space-x-10 border-b pb-4">
         <button
           className={`pb-2 ${
@@ -120,54 +118,108 @@ const Reviews = () => {
         </button>
       </div>
 
-      <div className="mt-8 flex justify-between items-center">
-        <h2 className="text-xl font-bold">All Reviews <span className="text-gray-500 font-normal">(451)</span></h2>
-
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 border rounded-full px-3 py-1 hover:bg-gray-50 transition">
-            <FiFilter className="w-4 h-4" />
-            <span className="text-sm">{sortOption}</span>
-          </button>
-          <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">
-            Write a Review
-          </button>
-        </div>
-      </div>
-
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {reviews.map((review) => (
-          <div
-            key={review.id}
-            className="border rounded-2xl p-5 shadow-sm hover:shadow-md transition"
-          >
-            <div className="flex justify-between items-start">
-              <div className="flex">{renderStars(review.rating)}</div>
-              <HiOutlineDotsHorizontal className="text-gray-400 cursor-pointer" />
-            </div>
-
-            <div className="flex items-center gap-2 mt-3">
-              <h3 className="font-bold">{review.name}</h3>
-              <span className="bg-green-500 text-white rounded-full text-[10px] px-1.5 py-0.5">
-                ✓
-              </span>
-            </div>
-
-            
-            <p className="mt-3 text-gray-600 text-sm leading-relaxed">
-              "{review.comment}"
+      {/* Tab Content */}
+      <div className="mt-8">
+        {/* Product Details Tab */}
+        {activeTab === "details" && (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Product Details</h2>
+            <p className="text-gray-600 leading-relaxed">
+              This premium t-shirt is crafted with high-quality cotton for ultimate comfort and durability. 
+              The minimalist design is perfect for casual wear and features eco-friendly fabric dyes.
             </p>
-
-           
-            <p className="mt-4 text-xs text-gray-400">
-              Posted on {review.date}
-            </p>
+            <ul className="list-disc list-inside mt-4 text-gray-700">
+              <li>100% Cotton</li>
+              <li>Machine Washable</li>
+              <li>Available in multiple sizes</li>
+              <li>Designed with eco-friendly materials</li>
+            </ul>
           </div>
-        ))}
-      </div>
-      <div className="mt-8 flex justify-center">
-        <button className="border rounded-full px-5 py-2 text-sm hover:bg-gray-50 transition">
-          Load More Reviews
-        </button>
+        )}
+
+        {/* Reviews Tab */}
+        {activeTab === "reviews" && (
+          <div>
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-bold mb-4">
+                All Reviews{" "}
+                <span className="text-gray-500 font-normal">(451)</span>
+              </h2>
+
+              <div className="flex items-center gap-4">
+                <button className="flex items-center gap-2 border rounded-full px-3 py-1 hover:bg-gray-50 transition">
+                  <FiFilter className="w-4 h-4" />
+                  <span className="text-sm">{sortOption}</span>
+                </button>
+                <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">
+                  Write a Review
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {reviews.map((review) => (
+                <div
+                  key={review.id}
+                  className="border rounded-2xl p-5 shadow-sm hover:shadow-md transition"
+                >
+                  <div className="flex justify-between items-start">
+                    <div className="flex">{renderStars(review.rating)}</div>
+                    <HiOutlineDotsHorizontal className="text-gray-400 cursor-pointer" />
+                  </div>
+
+                  <div className="flex items-center gap-2 mt-3">
+                    <h3 className="font-bold">{review.name}</h3>
+                    <span className="bg-green-500 text-white rounded-full text-[10px] px-1.5 py-0.5">
+                      ✓
+                    </span>
+                  </div>
+
+                  <p className="mt-3 text-gray-600 text-sm leading-relaxed">
+                    "{review.comment}"
+                  </p>
+
+                  <p className="mt-4 text-xs text-gray-400">
+                    Posted on {review.date}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <button className="border rounded-full px-5 py-2 text-sm hover:bg-gray-50">
+                Load More Reviews
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* FAQs Tab */}
+        {activeTab === "faqs" && (
+          <div>
+            <h2 className="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold">Q: What is the return policy?</h3>
+                <p className="text-gray-600">
+                  A: You can return the product within 30 days of purchase for a full refund.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold">Q: Does the t-shirt shrink after washing?</h3>
+                <p className="text-gray-600">
+                  A: No, it is pre-shrunk and designed to retain its size and shape.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold">Q: Are there different color options?</h3>
+                <p className="text-gray-600">
+                  A: Yes, we offer multiple color variations to choose from.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

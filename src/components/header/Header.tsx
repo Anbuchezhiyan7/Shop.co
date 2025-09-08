@@ -4,12 +4,50 @@ import { FiShoppingCart, FiSearch, FiMenu, FiX } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
+import tshirt from "../../assets/Tshirt.png";
+import jeans from "../../assets/Jeans.png";
+import checkedShirt from "../../assets/Checkedshirt.png";
+import stripedTshirt from "../../assets/Linetshirt.png";
+import verticalshirt from "../../assets/Verticalshirt.png";
+import graphictshirt from "../../assets/Graphictshirt.png";
+import shorts from "../../assets/Shorts.png";
+import skinnypant from "../../assets/Skinnypant.png";
 
 const Header = () => {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<any[]>([]);
+  const [showPopup, setShowPopup] = useState(false);
   const [isOpen, setIsOpen] = useState(false); // Mobile menu toggle
   const [shopOpen, setShopOpen] = useState(false); // Desktop dropdown
   const [menSubOpen, setMenSubOpen] = useState(false); // Men submenu
   const [mobileShopOpen, setMobileShopOpen] = useState(false); // Mobile Shop dropdown
+
+  const products = [
+    { name: "T-shirt with Tape Details", image: tshirt },
+    { name: "Skinny Fit Jeans", image: jeans },
+    { name: "Checkered Shirt", image: checkedShirt },
+    { name: "Sleeve Striped T-shirt", image: stripedTshirt },
+    { name: "Vertical Striped Shirt", image: verticalshirt },
+    { name: "Courage Graphic T-shirt", image: graphictshirt },
+    { name: "Loose Fit Bermuda Shorts", image: shorts },
+    { name: "Faded Skinny Jeans", image: skinnypant },
+  ];
+
+  const handleSearch = (e: any) => {
+    const value = e.target.value;
+    setQuery(value);
+
+    if (value.trim() === "") {
+      setResults([]);
+      setShowPopup(false);
+      return;
+    }
+    const filtered = products.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setResults(filtered);
+    setShowPopup(true);
+  };
 
   return (
     <div className="headerWrapper w-full bg-white">
@@ -38,11 +76,7 @@ const Header = () => {
             {/* Shop Dropdown */}
             <li
               className="relative flex items-center space-x-1 cursor-pointer"
-              onMouseEnter={() => setShopOpen(true)}
-              onMouseLeave={() => {
-                setShopOpen(false);
-                setMenSubOpen(false);
-              }}
+              onClick={() => setShopOpen((prev) => !prev)}
             >
               <span className="rounded-2xl px-2 py-1 transition-all duration-100 hover:bg-yellow-300 hover:scale-105">
                 Shop
@@ -94,24 +128,52 @@ const Header = () => {
             <li className="cursor-pointer rounded-2xl px-2 py-1 hover:bg-yellow-300 transition-all">
               On Sale
             </li>
-            <li className="cursor-pointer rounded-2xl px-2 py-1 hover:bg-yellow-300 transition-all">
-              New Arrivals
-            </li>
+            <Link to="/products">
+              <li className="cursor-pointer rounded-2xl px-2 py-1 hover:bg-yellow-300 transition-all">
+                New Arrivals
+              </li>
+            </Link>
             <li className="cursor-pointer rounded-2xl px-2 py-1 hover:bg-yellow-300 transition-all">
               Brands
             </li>
           </ul>
-
           {/* Search Bar */}
           <div className="relative">
             <input
               type="text"
               placeholder="Search for products..."
+              value={query}
+              onChange={handleSearch}
               className="pl-10 pr-4 py-2 rounded-full bg-gray-100 text-sm w-64 focus:outline-none"
             />
-            <FiSearch className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
-          </div>
+          {showPopup && results.length > 0 && (
+            <div className="absolute top-full">
+              {results.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center cursor-pointer hover:bg-gray-100 p-2"
+                    onClick={() => {
+                      setQuery(item.name);
+                      setShowPopup(false);
+                    }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-10 h-10 object-cover rounded"
+                    />
+                    <span className="ml-2 text-sm">{item.name}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {showPopup && results.length === 0 && (
+            <div className="absolute top-full left-0">No Product Found</div>
+          )}
         </div>
+         </div>
 
         {/* Right Icons */}
         <div className="flex items-center space-x-4 text-xl">
@@ -192,9 +254,15 @@ const Header = () => {
               )}
             </li>
 
-            <li className="cursor-pointer px-2 py-2 hover:bg-gray-100">On Sale</li>
-            <li className="cursor-pointer px-2 py-2 hover:bg-gray-100">New Arrivals</li>
-            <li className="cursor-pointer px-2 py-2 hover:bg-gray-100">Brands</li>
+            <li className="cursor-pointer px-2 py-2 hover:bg-gray-100">
+              On Sale
+            </li>
+            <li className="cursor-pointer px-2 py-2 hover:bg-gray-100">
+              New Arrivals
+            </li>
+            <li className="cursor-pointer px-2 py-2 hover:bg-gray-100">
+              Brands
+            </li>
 
             {/* Mobile Search Bar */}
             <li>
